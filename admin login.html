@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN LOG IN</title>
+    <style>
+        body {
+  background-color: #F5F5F5;
+  font-family: Arial, sans-serif;
+}
+
+#main {
+  width: 400px;
+    margin: 50px auto;
+    background-color: #FFF;
+    padding: 65px;
+    margin-top: 15%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #007AFF;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0061C6;
+}
+#main>img{
+  margin-left: 82px;
+}
+</style>
+</head>
+<body>
+    <div id="main">
+      <img src="https://upload.wikimedia.org/wikipedia/en/8/8d/SSUET_Logo.png"/>
+        <h1>Welcome to Admin Portal</h1>
+        <p>Please log in to continue:</p>
+        <form>
+          <input type="text" id="username" placeholder="Username">
+          <input type="password" id="password" placeholder="Password">
+          <button type="button" onclick="login()">Log In</button>
+        </form>
+      </div>
+  
+      <script text="module">
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+  
+  // Here you would check the credentials against your database or some other authentication mechanism
+  // For the purpose of this example, we'll just assume that the username is "user" and the password is "password"
+  if (username === "admin" && password === "ssuet1234") {
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid username or password. Please try again.");
+  }
+}
+
+// Disable the back button
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+};
+
+      </script>
+  
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNS3vx" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+      
+        body {
+          background-color: rgb(10 6 38 / 98%);
+          font-family: 'Playfair Display', serif;
+          font-weight: 500;
+        }
+
+        .container {
+            background-color: #FFFFFF;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #BDBDBD;
+        }
+
+        .text-center {
+            color: #003366;
+        }
+
+        table {
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px #BDBDBD;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #CCCCCC;
+        }
+
+        th {
+            background-color: #003366;
+            color: #FFFFFF;
+        }
+
+        .citi {
+            color: #FF0000;
+        }
+
+        .editing {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-class, .delete-class {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .edit-class {
+            background-color: #2196F3;
+        }
+
+        .edit-class:hover {
+            background-color: #0D47A1;
+        }
+
+        .delete-class {
+            background-color: #F44336;
+        }
+
+        .delete-class:hover {
+            background-color: #B71C1C;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    overflow-y: auto;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav-item {
+    margin-top: 10px;
+  }
+}
+.footer {
+    background-color: #ffffff;
+    padding: 44px 45px;
+    margin-top: 7%;
+    width: 100%;
+}
+
+.footer h4 {
+  color: #333333;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.footer p {
+  color: #666666;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.footer ul li {
+  color: #666666;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.footer ul li i {
+  color: #333333;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons a {
+  background-color: #333333;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 40px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #f85c4c;
+  color: #ffffff;
+}
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 15px;
+}
+
+.nav-link {
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.nav-link:hover {
+  color: #ff0000;
+}
+
+
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <a class="navbar-brand" href="#">Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Message Centre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="result.html">Result Managment</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+    <div class="container">
+        <h2 class="text-center">Registered Courses</h2>
+        <table class="table table-bordered table-striped">
+            <thead> 
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Credit Hour</th>
+                    <th>Course 1</th>
+                    <th>Course 2</th>
+                    <th>Course 3</th>
+                    <th>Course 4</th>
+                    <th>Course 5</th>
+                    <th>City</th>
+                    <th>Action</th> 
+                    <th></th> 
+                </tr>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="container1">
+          <div class="row">
+            <div class="col-md-4">
+              <h4>About Us</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="col-md-4">
+              <h4>Contact Us</h4>
+              <ul class="list-unstyled">
+                <li><i class="fa fa-map-marker"></i> 1234 Main St, Suite 200, New York, NY 10001</li>
+                <li><i class="fa fa-phone"></i> (123) 456-7890</li>
+                <li><i class="fa fa-envelope"></i> info@yourdomain.com</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4>Connect with Us</h4>
+              <ul class="list-unstyled social-icons">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      
+      
+      <script text="module">
+        const firebaseConfiguration = {
+            apiKey: "AIzaSyAPpfFROl5dIDJrUsFE5nuLVVeuof4AMXw",
+             authDomain: "newtask-51553.firebaseapp.com",
+             databaseURL: "https://newtask-51553.firebaseio.com",
+             projectId: "newtask-51553",
+             storageBucket: "newtask-51553.appspot.com",
+             messagingSenderId: "781698103659",
+             appId: "1:781698103659:web:2b075a26f30e87446af42e",
+             measurementId: "G-X7GDRGP8D1"
+        };
+           
+        firebase.initializeApp(firebaseConfiguration);
+        const db = firebase.firestore();
+        const collectionRef = db.collection('form');
+        const tableBody = document.querySelector('table tbody');
+           
+        collectionRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                addDataToTable(data, doc.id);
+            });
+        });
+           
+        function addDataToTable(data, docId) {
+    const row = document.createElement('tr');
+    const fname = document.createElement('td');
+    fname.textContent = data.fname;
+    const lname = document.createElement('td');
+    lname.textContent = data.lname;
+    const c_hour = document.createElement('td');
+    c_hour.textContent = data.c_hour;
+    const subject = document.createElement('td');
+    subject.textContent = data.subject;
+    const subject1 = document.createElement('td');
+    subject1.textContent = data.subject1;
+    const subject2 = document.createElement('td');
+    subject2.textContent = data.subject2;
+    const subject3 = document.createElement('td');
+    subject3.textContent = data.subject3;
+    const subject4 = document.createElement('td');
+    subject4.textContent = data.subject4;
+    const city = document.createElement('td');
+    city.textContent = data.city;
+    city.classList.add("citi");
+
+    const editCell = document.createElement('td');
+    editCell.classList.add("editing");
+    const editButton = document.createElement('button');
+    editButton.classList.add("edit-class");
+    editButton.textContent = 'Edit';
+
+    editButton.addEventListener('click', () => {
+        if (editButton.textContent === 'Edit') {
+            editButton.textContent = 'Save';
+            fname.contentEditable = true;
+            lname.contentEditable = true;
+            c_hour.contentEditable = true;
+            subject.contentEditable = true;
+            subject1.contentEditable = true;
+            subject2.contentEditable = true;
+            subject3.contentEditable = true;
+            subject4.contentEditable = true;
+            city.contentEditable = true;
+        } else {
+            editButton.textContent = 'Edit';
+            collectionRef.doc(docId).update({
+                fname: fname.textContent,
+                lname: lname.textContent,
+                c_hour: c_hour.textContent,
+                subject: subject.textContent,
+                subject1: subject1.textContent,
+                subject2: subject2.textContent,
+                subject3: subject3.textContent,
+                subject4: subject4.textContent,
+                city: city.textContent,
+            }).then(() => {
+                alert('Document successfully updated!');
+            }).catch((error) => {
+                console.error('Error updating document: ', error);
+            });
+            fname.contentEditable = false;
+            lname.contentEditable = false;
+            c_hour.contentEditable = false;
+            subject.contentEditable = false;
+            subject1.contentEditable = false;
+            subject2.contentEditable = false;
+            subject3.contentEditable = false;
+            subject4.contentEditable = false;
+            city.contentEditable = false;
+        }
+    });
+
+    const deleteCell = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add("delete-class");
+    deleteButton.textContent = 'Delete';
+
+    deleteButton.addEventListener('click', () => {
+        collectionRef.doc(docId).delete().then(() => {
+            alert('Document successfully deleted!');
+            location.reload();
+        }).catch((error) => {
+            console.error('Error removing document: ', error);
+        });
+    });
+
+    editCell.appendChild(editButton);
+    deleteCell.appendChild(deleteButton);
+
+    row.appendChild(fname);
+    row.appendChild(lname);
+    row.appendChild(c_hour);
+    row.appendChild(subject);
+    row.appendChild(subject1);
+    row.appendChild(subject2);
+    row.appendChild(subject3);
+    row.appendChild(subject4);
+    row.appendChild(city);
+    row.appendChild(editCell);
+    row.appendChild(deleteCell);
+
+    const tableBody = document.querySelector('table tbody').appendChild(row);
+
+
+  }
+//edit//
+
+
+
+
+
+  </script>
+</body>
+</html>

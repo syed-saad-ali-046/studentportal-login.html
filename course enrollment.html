@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <title>Course enrollment</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="course.css"/> 
+</head>
+
+<body>
+  <header class="main-header clearfix" role="header">
+    <div class="logo">
+      <a href="index.html"><em>SIR SYED</em> UNIVERSITY</a>
+    </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+      <ul class="main-menu">
+        <li><a href="#section1">Home</a></li>
+        <li class="has-submenu"><a href="#section2">About Us</a>
+          <ul class="sub-menu">
+            <li><a href="#section2">Who we are?</a></li>
+            <li><a href="#section3">What we do?</a></li>
+            <li><a href="#section3">How it works?</a></li>
+            <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
+          </ul>
+        </li>
+        <li><a target="_blank" href="course enrollment.html">Course</a></li>
+        <!-- <li><a href="#section5">Video</a></li> -->
+        <li><a href="#section6">Contact</a></li>
+        <li><a href="https://templatemo.com" class="external">External</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+<div>
+<label for="semester">Select your semester:</label>
+<select id="semester" onchange="updateCourses()">
+  <option value="semester1">Semester 1</option>
+  <option value="semester2">Semester 2</option>
+  <option value="semester3">Semester 3</option>
+  <!-- Add more semesters here -->
+</select>
+
+<label for="course">Please Register your Self In following Subjects:</label>
+<p id="course">
+  <!-- Course options will be added dynamically here -->
+</p>
+</div>
+
+ 
+  <div>
+        
+        <form id="clearFrom">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+          <label for="subject">Course-1</label>
+          <input type="text" id="subject" placeholder="Subject Name">
+
+          <label for="subject">Course-2</label>
+          <input type="text" id="subject1" placeholder="Subject Name">
+
+          <label for="subject">Course-3</label>
+          <input type="text" id="subject2" placeholder="Subject Name">
+
+          <label for="subject">Course-4</label>
+          <input type="text" id="subject3" placeholder="Subject Name">
+
+          <label for="subject">Course-5</label>
+          <input type="text" id="subject4" placeholder="Subject Name">
+    
+          <label for="city">City</label>
+          <select id="city" name="city">
+            <option value="Karachi">Karachi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Faislabad">Faislabad</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="credit hour">Total Credit hour</label>
+          <select id="c_hour" name="credit hour">
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+          
+          </select>
+    
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </div>
+      <div class="table-wrapper">
+        <h2>Registered Courses</h2>
+        <table class="f1-table">
+        <thead>
+		<tr>
+          
+          <th>Credit Hour</th>
+          <th>Course1</th>
+          <th>Course2</th>
+          <th>Course3</th>
+          <th>Course4</th>
+          <th>Course5</th>
+          
+		</tr>
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+        </table>
+      </div>
+  
+  <img onclick="openPopup()" class="image" src="https://www.pngkit.com/png/detail/874-8744003_chat-png-transparent-images-orange-chat-icon-png.png"/>
+    
+<script text="module">
+        // course selection javascript//
+  const courses = {
+  semester1: ['Course:Programming Fundamental(credit:3+0)','Course:Linear Algebra(credit:3+0)','Course:Islamiat(2+0)','Course:Introduction to Computer(3+0)'],
+  semester2: ['Course:DataBase(3+0)','Course:OOP(3+0)','Course:Software Development(3+0)','Course:Calculas(2+0)','OOP-Lab(2+0)'],
+  semester3: ['Course:Operating System(3+0)','Course:Data Structure and Algorithm(3+0)','Course:Software Requirment Engineering(3+0)','Course:Probablity and Statistic(2+1)','Lab-DSA(1+0)']
+  // Add more courses for each semester here
+};
+
+function updateCourses() {
+  const semesterSelect = document.getElementById('semester');
+  const courseSelect = document.getElementById('course');
+  const selectedSemester = semesterSelect.value;
+  const semesterCourses = courses[selectedSemester];
+
+  // Clear the previous course options
+  courseSelect.innerHTML = '';
+
+  // Add the new course options based on the selected semester
+  semesterCourses.forEach(course => {
+    const option = document.createElement('option');
+    option.value = course;
+    option.textContent = course;
+    courseSelect.appendChild(option);
+  });
+}
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      
+      
+      <script text="module">
+      const firebaseConfiguration = {
+            apiKey: "AIzaSyAPpfFROl5dIDJrUsFE5nuLVVeuof4AMXw",
+             authDomain: "newtask-51553.firebaseapp.com",
+             databaseURL: "https://newtask-51553.firebaseio.com",
+             projectId: "newtask-51553",
+             storageBucket: "newtask-51553.appspot.com",
+             messagingSenderId: "781698103659",
+             appId: "1:781698103659:web:2b075a26f30e87446af42e",
+             measurementId: "G-X7GDRGP8D1"
+           };
+           
+         
+           
+                   // Initialize Firebase
+                   firebase.initializeApp(firebaseConfiguration);
+                   var db = firebase.firestore();
+                   var collectionRef = db.collection('form');
+           
+                   collectionRef.get().then((querySnapshot) => {
+                       querySnapshot.forEach((doc) => {
+                           var data = doc.data();
+                           addDataToTable(data);
+             });
+           });
+           
+           function addDataToTable(data) {
+             // create a new table row
+             var row = document.createElement('tr');
+             // create a table cell for each field in the data object
+             
+             var c_hour = document.createElement('td');
+             c_hour.textContent = data.c_hour;
+             
+             var subject = document.createElement('td');
+             subject.textContent = data.subject;
+
+             var subject1 = document.createElement('td');
+             subject1.textContent = data.subject1;
+             var subject2 = document.createElement('td');
+             subject2.textContent = data.subject2;
+             var subject3 = document.createElement('td');
+             subject3.textContent = data.subject3;
+             var subject4 = document.createElement('td');
+             subject4.textContent = data.subject4;
+             // add the table cells to the row
+             
+             row.appendChild(c_hour);
+             row.appendChild(subject);
+             row.appendChild(subject1);
+             row.appendChild(subject2);
+             row.appendChild(subject3);
+             row.appendChild(subject4);
+             
+             
+             // to add the row to the table body
+             var tbody = document.querySelector('table tbody');
+             tbody.appendChild(row);
+           }
+      </script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <script type="module">
+        
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPpfFROl5dIDJrUsFE5nuLVVeuof4AMXw",
+            authDomain: "newtask-51553.firebaseapp.com",
+            databaseURL: "https://newtask-51553-default-rtdb.firebaseio.com",
+            projectId: "newtask-51553",
+            storageBucket: "newtask-51553.appspot.com",
+            messagingSenderId: "781698103659",
+            appId: "1:781698103659:web:2b075a26f30e87446af42e",
+            measurementId: "G-X7GDRGP8D1",
+        };
+
+        // Initialize Firebase
+        
+        firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore();
+
+//Variable to access database collection
+const db = firestore.collection("form");
+let submitButton = document.getElementById("submit");
+
+//Create Event Listener To Allow Form Submission
+submitButton.addEventListener("click", (e) => {
+  //Prevent Default Form Submission Behavior
+  e.preventDefault();
+
+  //Get Form Values
+  let firstName = document.getElementById("fname").value;
+  let lastName = document.getElementById("lname").value;
+  let city = document.getElementById("city").value;
+  let subject=document.getElementById("subject").value;
+  let subject1=document.getElementById("subject1").value;
+  let subject2=document.getElementById("subject2").value;
+  let subject3=document.getElementById("subject3").value;
+  let subject4=document.getElementById("subject4").value;
+  let c_hour=document.getElementById("c_hour").value;
+
+  firestore.collection("form")
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        const fn = doc.data().fname;
+        if (firstName === fn) {
+          console.log("Already Exists");
+        }
+
+        
+      });
+    });
+  //Save Form Data To Firebase
+  db.doc()
+    .set({
+      fname: firstName,
+      lname: lastName,
+      city: city,
+      subject:subject,
+      subject1:subject1,
+      subject2:subject2,
+      subject3:subject3,
+      subject4:subject4,
+      c_hour:c_hour,
+    })
+    .then(() => { })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  //alert
+  alert("Your Form Has Been Submitted Successfully");
+  
+
+  //clear form after submission
+  function clearForm() {
+    document.getElementById("clearFrom").reset();
+  }
+  clearForm()
+});
+firebase.initializeApp(firebaseConfiguration);
+
+</script>
+<script type="text/javascript">
+  function openPopup() {
+    window.open("bot.html", "Chat Bot", "width=400,height=500");
+  }
+</script>
+
+
+
+
+
+    
+</body>
+</html>

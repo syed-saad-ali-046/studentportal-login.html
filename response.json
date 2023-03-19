@@ -1,0 +1,16 @@
+{
+	"response": [
+		{
+			
+			"response": "Hi there!",
+			"keyword": "hello"
+		},
+		{
+			"keyword": "how are you",
+			"response": "I'm doing well, thanks for asking!"
+		},
+		{
+			"keyword": "bye",
+			"response": "Good"}
+        ]
+    }

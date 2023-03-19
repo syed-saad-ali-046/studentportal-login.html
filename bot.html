@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+  <link rel="stylesheet" href="bot.css">
+
+</head>
+<body>
+<div>
+  <button onclick="openPopup()">Open Chat Bot</button>
+  <div class="container">
+    <div class="chat-header">
+      <div class="logo">
+        <img src="https://cdn.vectorstock.com/i/preview-1x/87/98/chatbot-flat-line-icon-vector-45058798.jpg" alt="cwt" />
+      </div>
+      <div class="title">Chat Bot</div>
+    </div>
+    <div class="chat-body"></div>
+    <div class="chat-input">
+      <div class="input-sec">
+        <input type="text" id="txtInput" placeholder="Type here" autofocus />
+      </div>
+      <div class="send">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9N0UMhTepVF-orQ_fOcX2n18gDNDbZVrl3vHnA02EvTbAEnDIFKCq3TTDKUDevwTfC5s&usqp=CAU" alt="send" />
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function openPopup() {
+    window.open("bot.html", "Chat Bot", "width=400,height=500");
+  }
+</script>
+
+	
+
+
+
+  <script type="module">
+  
+   const chatBody = document.querySelector(".chat-body");
+const txtInput = document.querySelector("#txtInput");
+const send = document.querySelector(".send");
+const anchor=document.createElement("a")
+anchor.href="index.html/#section6"
+document.head.appendChild(anchor);
+send.addEventListener("click", () => renderUserMessage());
+
+txtInput.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    renderUserMessage();
+  }
+});
+
+const renderUserMessage = () => {
+  const userInput = txtInput.value;
+  renderMessageEle(userInput, "user");
+  txtInput.value = "";
+  setTimeout(() => {
+    renderChatbotResponse(userInput);
+    setScrollPosition();
+  }, 600);
+};
+
+const renderChatbotResponse = (userInput) => {
+  const res = getChatbotResponse(userInput);
+  renderMessageEle(res);
+};
+
+const renderMessageEle = (txt, type) => {
+  let className = "user-message";
+  if (type !== "user") {
+    className = "chatbot-message";
+  }
+  const messageEle = document.createElement("div");
+  const txtNode = document.createTextNode(txt);
+  messageEle.classList.add(className);
+  messageEle.append(txtNode);
+  chatBody.append(messageEle);
+};
+
+const getChatbotResponse = (userInput) => {
+  return responseObj[userInput] == undefined
+    ? "Sorry I am not coded to answer you this but if you want more answers you can send email to managment through contact form"
+    : responseObj[userInput];
+};
+
+const setScrollPosition = () => {
+  if (chatBody.scrollHeight > 0) {
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+};
+  </script>
+  <script src="display.js"></script>
+	  
+</body>
+</html>
