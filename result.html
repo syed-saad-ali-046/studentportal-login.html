@@ -3,8 +3,12 @@
 <head>
 	<title>Student GPA and CGPA Calculator</title>
   <script src="FileSaver.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" integrity="sha512-5B4j4d3qtb6Uu4vU8W6iXMjSCKDBX9QmT6e8Wn2QJN1jrV7gkN/egBltpe+bHSL6dZV7NlYgoy8VObkb0Kjx6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="jspdf.js"></script>
+  <script src="jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+  
+
   <style>
 	/* CSS for Student GPA and CGPA Calculator */
 
@@ -86,7 +90,10 @@ button:hover {
 </head>
 <body>
 	<h1>Student GPA and CGPA Calculator</h1>
-	<label for="courses">Select Number of Courses (1-8): </label>
+	
+  <label for="name">Student Name</label>
+  <input type="text" id="name"/>
+  <label for="courses">Select Number of Courses (1-8): </label>
 	<select id="courses" onchange="showInputFields()">
 		<option value="">Select...</option>
 		<option value="1">1</option>
@@ -107,9 +114,9 @@ button:hover {
 	<div id="result"></div>
 	<br><br>
 	<button onclick="generatePDF()"><i class="fas fa-download">Download PDF</i></button>
-
-  
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" integrity="sha512-5B4j4d3qtb6Uu4vU8W6iXMjSCKDBX9QmT6e8Wn2QJN1jrV7gkN/egBltpe+bHSL6dZV7NlYgoy8VObkb0Kjx6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="result.js"></script>
+  <script src="jspdf.js"></script>
+  <script src="jspdf.min.js"></script>
+  <script src="jspdf.plugin.autotable.min.js"></script>
+  <script src="result.js"></script>
 </body>
 </html>
