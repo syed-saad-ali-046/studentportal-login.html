@@ -1,6 +1,6 @@
 let courseCredits = [];
 let courseGrades = [];
-
+const name=document.getElementById("name").value;
 function showInputFields() {
 	let numCourses = document.getElementById("courses").value;
 	let inputFieldsDiv = document.getElementById("inputFields");
@@ -61,9 +61,32 @@ function showInputFields() {
     }
     
     function generatePDF() {
-        let doc = new jsPDF();
-        let resultText = document.getElementById("result").innerHTML;
-        doc.text(resultText, 10, 10);
-        doc.save("result.pdf");
-    }
-    
+        const name=document.getElementById("name").value;
+        const doc = new jsPDF();
+      
+        // Add title to PDF
+        doc.setFontSize(22);
+        
+        doc.text("Mark Sheet", 20, 20);
+      
+        // Add course information to PDF
+        let y = 50;
+        for (let i = 0; i < courseCredits.length; i++) {
+          doc.setFontSize(16);
+          doc.text(`Course ${i+1}: ${document.getElementById("course"+(i+1)).value}`, 14, y);
+          doc.setFontSize(12);
+          doc.text(`Credit Hours: ${courseCredits[i]}`, 14, y+10);
+          doc.text(`Grade: ${courseGrades[i]}`, 70, y+10);
+          y += 20;
+        }
+      
+        // Add GPA and CGPA to PDF
+        doc.setFontSize(16);
+        doc.text(`GPA: ${document.getElementById("result").innerHTML}`, 14, y+10);
+        doc.text(`CGPA: ${document.getElementById("result").innerHTML}`, 14, y+20);
+      
+        // Save PDF
+        
+        doc.save(name);
+      }
+      
