@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Student GPA & CGPA Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -29,7 +30,9 @@
             font-weight: bold;
         }
 
-        input, select, button {
+        input,
+        select,
+        button {
             display: block;
             width: 100%;
             margin: 10px 0;
@@ -55,9 +58,26 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
-        #gpa, #cgpa {
+        .course-input label {
+            grid-column: span 1;
+            margin: auto 0;
+        }
+
+        .course-input input,
+        .course-input select {
+            grid-column: span 2;
+            padding: 5px;
+        }
+
+        #inputFields {
+            margin-top: 10px;
+        }
+
+        #gpa,
+        #cgpa {
             text-align: center;
             font-size: 20px;
             color: #555;
@@ -65,24 +85,24 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Student GPA & CGPA Calculator</h1>
         <label for="name">Student Name:</label>
         <input type="text" id="name" placeholder="Enter your name" />
-
-        <label for="courses">Select Number of Courses:</label>
-        <select id="courses" onchange="showInputFields()">
-            <option value="">Select...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-        </select>
+        <div>
+            <label for="courses">Select Number of Courses:</label>
+            <select id="courses" onchange="showInputFields()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
 
         <div id="inputFields"></div>
         <button onclick="calculateGPA()">Calculate GPA</button>
@@ -93,7 +113,8 @@
         <div id="cgpa"></div>
     </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
 <script src="result.js"></script>
+
 </html>

@@ -3,16 +3,18 @@ let courseGrades = [];
 function showInputFields() {
     let numCourses = document.getElementById("courses").value;
     let inputFieldsDiv = document.getElementById("inputFields");
-    inputFieldsDiv.innerHTML = "";
+    inputFieldsDiv.innerHTML = ""; // Clear existing fields
     for (let i = 0; i < numCourses; i++) {
         inputFieldsDiv.innerHTML += `
             <div class="course-input">
-                <label for="course${i+1}">Course ${i+1}: </label>
-                <input type="text" id="course${i+1}" name="course${i+1}" placeholder="Course Name" required>
-                <label for="credit${i+1}">Credit Hours: </label>
-                <input type="number" id="credit${i+1}" name="credit${i+1}" placeholder="3" required>
-                <label for="grade${i+1}">Grade: </label>
-                <select id="grade${i+1}" name="grade${i+1}" required>
+                <label for="course${i + 1}">Course ${i + 1}: </label>
+                <input type="text" id="course${i + 1}" name="course${i + 1}" placeholder="Course Name" required>
+                
+                <label for="credit${i + 1}">Credit Hours: </label>
+                <input type="number" id="credit${i + 1}" name="credit${i + 1}" placeholder="3" required>
+                
+                <label for="grade${i + 1}">Grade: </label>
+                <select id="grade${i + 1}" name="grade${i + 1}" required>
                     <option value="">Select...</option>
                     <option value="4.0">A</option>
                     <option value="3.7">A-</option>
@@ -30,13 +32,14 @@ function showInputFields() {
     }
 }
 
+
 function calculateGPA() {
     let numCourses = document.getElementById("courses").value;
     courseCredits = [];
     courseGrades = [];
     for (let i = 0; i < numCourses; i++) {
-        let credit = parseFloat(document.getElementById(`credit${i+1}`).value);
-        let grade = parseFloat(document.getElementById(`grade${i+1}`).value);
+        let credit = parseFloat(document.getElementById(`credit${i + 1}`).value);
+        let grade = parseFloat(document.getElementById(`grade${i + 1}`).value);
         courseCredits.push(credit);
         courseGrades.push(grade);
     }
@@ -66,30 +69,47 @@ function calculateCGPA() {
     let cgpa = weightedGPAs / totalCredits;
     document.getElementById("cgpa").innerHTML = `Your cumulative CGPA is <strong>${cgpa.toFixed(2)}</strong>`;
 }
-
 function generatePDF() {
-    const name = document.getElementById("name").value || "Student";
-    const doc = new jsPDF();
-    doc.setFontSize(18);
-    doc.text(`${name}'s Mark Sheet`, 105, 15, { align: 'center' });
+    const studentName = document.getElementById("name").value || "N/A";
 
-    const headers = [["Course", "Credit Hours", "Grade"]];
-    const data = courseCredits.map((credit, index) => [
-        document.getElementById(`course${index+1}`).value,
-        credit,
-        courseGrades[index]
-    ]);
-
-    // Add GPA and CGPA at the end
-    data.push(["GPA", "", document.getElementById("gpa").innerText.split(":")[1].trim()]);
-    data.push(["CGPA", "", document.getElementById("cgpa").innerText.split(":")[1].trim()]);
-
-    doc.autoTable({
-        head: headers,
-        body: data,
-        startY: 25,
-        styles: { halign: "center" },
+    // Prepare table data
+    const tableBody = [
+        ["Course", "Credit Hours", "Grade"], // Table Header
+    ];
+    courseCredits.forEach((credit, index) => {
+        tableBody.push([
+            document.getElementById(`course${index + 1}`).value || "N/A", // Course Name
+            credit, // Credit Hours
+            courseGrades[index], // Grade
+        ]);
     });
 
-    doc.save(`${name}_MarkSheet.pdf`);
+    // Add GPA and CGPA details
+    const gpaText = document.getElementById("gpa").textContent || "";
+    const cgpaText = document.getElementById("cgpa").textContent || "";
+
+    // Define the document structure
+    const docDefinition = {
+        content: [
+            { text: "Mark Sheet", style: "header" },
+            { text: `Student Name: ${studentName}`, margin: [0, 10, 0, 10] },
+            {
+                table: {
+                    headerRows: 1,
+                    widths: ["*", "auto", "auto"],
+                    body: tableBody,
+                },
+                layout: "lightHorizontalLines",
+                margin: [0, 10, 0, 10],
+            },
+            { text: gpaText, margin: [0, 10, 0, 5] },
+            { text: cgpaText, margin: [0, 0, 0, 10] },
+        ],
+        styles: {
+            header: { fontSize: 18, bold: true, alignment: "center" },
+        },
+    };
+
+    // Generate and download the PDF using pdfMake
+    pdfMake.createPdf(docDefinition).download(`${studentName}_MarkSheet.pdf`);
 }
